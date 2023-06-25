@@ -10,7 +10,7 @@
         },
         outputFormat: {
             type: String,
-            default: 'DD:HH:mm:ss:SSS',
+            default: 'HH:mm:ss', // 显示格式 DD:HH:mm:ss:SSS，可自定义如 mm:ss
         },
     });
 
@@ -19,7 +19,6 @@
     const endTime = dayjs(props.date, "YYYY-MM-DD HH:mm:ss");// 结束时间
     const remainTime = ref(0); // 剩余时间，单位毫秒
     const output = computed(() => outputFormatTime(props.outputFormat as string, remainTime.value).format);
-
 
     // 倒计时
     const tickTime = () => {
@@ -39,12 +38,12 @@
     onMounted(() => {
         tickTime();
     })
-
-
 </script>
 
 <template>
-    <div>{{ remainTime ? output : '开始抢购' }}</div>
+    <div style="margin-top: 300px;font-size: 34px;text-align: center;">
+        距离2099年还有：{{ output }}
+    </div>
 </template>
 
 <style scoped>
